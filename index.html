@@ -43,9 +43,12 @@
                     </div>
                 </div>
             </nav>
+    <input type = "text" id= "map-search">
     <div id="map"></div>
-
+    
+    
     <script>
+   
     function initMap(){
         //Map options
         var options={
@@ -53,17 +56,30 @@
             center:{lat:19.1998,lng:72.8426}
         }
         var map = new google.maps.Map(document.getElementById('map'),options);
+        var searchBox = new google.maps.places.SearchBox(document.getElementById("map-search"));
+        var service = new google.maps.places.PlacesService(map);
+        var marker = new google.maps.Marker({position:{lat:19.2150,lng:72.8464},map:map,draggable:true});
 
-        var marker = new google.maps.Marker({position:{lat:19.2150,lng:72.8464},map:map});
+        google.maps.event.addListener(searchBox,onchange=function(){
+            var places = searchBox.getPlaces();
+            var bounds = new google.maps.LatLngBounds();
+            var i,place;
+            alert("You reached here");
+            //for(i=0;place=places[i];i++)
+            //{
+                console.log(places[0].geometry.location);
+                bounds.extend(places.geometry.location);
+                marker.setPosition(places.geometry.location);
+            //}
+            map.fitBounds(bounds);
+            map.setZoom(15);
+        });
     }
     
     
     
     </script>
-    <script
-    src=
-"https://maps.googleapis.com/maps/api/js?key=AIzaSyDGvrvLrn2UUx_ZCKuY2yTlNvKWzycZUAo&callback=initMap">
-    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGvrvLrn2UUx_ZCKuY2yTlNvKWzycZUAo&libraries=places&callback=initMap" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </body>
