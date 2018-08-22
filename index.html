@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Bootstrap 101 Template</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
        
     <style>
       #map {
@@ -16,33 +16,27 @@
   </head>
   <body>
       
-        <nav class="navbar navbar-inverse navbar-static-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">Blood Donation</a>
-                    </div>
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">About</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Design</a></li>
-                                    <li><a href="#">Development</a></li>
-                                    <li><a href="#">Consulting</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Page 1-1</a></li>
+          <li><a href="#">Page 1-2</a></li>
+          <li><a href="#">Page 1-3</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
     <input type = "text" id= "map-search">
     <div id="map"></div>
     
@@ -55,22 +49,27 @@
             zoom:13,
             center:{lat:19.1998,lng:72.8426}
         }
+
+
         var map = new google.maps.Map(document.getElementById('map'),options);
         var searchBox = new google.maps.places.SearchBox(document.getElementById("map-search"));
         var service = new google.maps.places.PlacesService(map);
         var marker = new google.maps.Marker({position:{lat:19.2150,lng:72.8464},map:map,draggable:true});
-
-        google.maps.event.addListener(searchBox,onchange=function(){
+        google.maps.event.addListener(searchBox, 'places_changed',function(){
+	    console.log("places ",searchBox.getPlaces());
             var places = searchBox.getPlaces();
             var bounds = new google.maps.LatLngBounds();
-            var i,place;
+            var i;
+	    var place;
+	    console.log("places are ",places);
             alert("You reached here");
-            //for(i=0;place=places[i];i++)
-            //{
-                console.log(places[0].geometry.location);
-                bounds.extend(places.geometry.location);
-                marker.setPosition(places.geometry.location);
-            //}
+            for(i=0;place=places[i];i++)
+            {
+		console.log("place is ",place);
+                console.log(place.geometry.location);
+                bounds.extend(place.geometry.location);
+                marker.setPosition(place.geometry.location);
+            }
             map.fitBounds(bounds);
             map.setZoom(15);
         });
@@ -81,8 +80,7 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGvrvLrn2UUx_ZCKuY2yTlNvKWzycZUAo&libraries=places&callback=initMap" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
   </body>
 </html>
-
 
