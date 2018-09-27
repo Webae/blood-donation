@@ -1,0 +1,28 @@
+<html>
+<head>
+<link rel="stylesheet "type="text/css" href="loginc.css">
+<h3><span>Sign In</span></h3>
+</head>
+<div class="forml">
+<form action="loginpp.php" method="post">
+<font color="#F52887" size=5px><i>Blood is meant to circulate, Pass it around!</b></font><br><br>
+<label for="username "><span>Username</span></label>
+<input type="text" name="username" id="username" ></input>
+<br><br>
+<label for="password"><span>Password    </span></label>
+<input type="password" name="password" id="password" ></input>
+<br><br>
+<input type="submit" value="Log In">
+<input type="button" value="Sign Up" onclick="signup()">
+</form>
+</div>
+</html>
+<?php
+$mytext = $_POST['username'];
+?>
+<script>
+function signup()
+{
+document.location='signup.html';
+}
+</script>
