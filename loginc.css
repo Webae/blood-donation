@@ -85,7 +85,7 @@ h5{
 	
 }
  	
-input[type=text], input[type=password]{
+input[type=text], input[type=password], input[type=email], input[type=tel]{
      color : #990012;
      box-sizing: border-box;
     -webkit-box-sizing: border-box;
