@@ -20,6 +20,17 @@
 <?php
 if(isset($_POST["login"]))
 {
+session_start();
+$user = $_POST["username"];
+$_SESSION['start'] = time();
+$_SESSION['userid']=$user;
+echo '<script language="javascript">';
+echo 'document.location="mapfinaldon.php" ';
+echo '</script>';
+	
+}
+/*
+{
 	$user = $_POST["username"];
 	$pass = $_POST["password"];
 
@@ -52,6 +63,7 @@ if(isset($_POST["login"]))
 	echo '</script>';	
 	}
 }
+*/
 	?>
 <script>
 function signup()
